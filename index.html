@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengingat PR</title>
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-light: #818cf8;
+            --secondary: #EC4899;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            /* Light theme variables */
+            --bg-light: linear-gradient(to bottom, #F8FAFC, #E2E8F0);
+            --card-bg-light: rgba(255, 255, 255, 0.9);
+            --text-light: #333333;
+            --text-secondary-light: #6B7280;
+            --border-light: #E5E7EB;
+            /* Dark theme variables */
+            --bg-dark: linear-gradient(to bottom, #1F2937, #111827);
+            --card-bg-dark: rgba(31, 41, 55, 0.9);
+            --text-dark: #F3F4F6;
+            --text-secondary-dark: #D1D5DB;
+            --border-dark: #4B5563;
+            /* Default to light theme */
+            --background: var(--bg-light);
+            --card-bg: var(--card-bg-light);
+            --text: var(--text-light);
+            --text-secondary: var(--text-secondary-light);
+            --border: var(--border-light);
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+        }
+        .dark-mode {
+            --background: var(--bg-dark);
+            --card-bg: var(--card-bg-dark);
+            --text: var(--text-dark);
+            --text-secondary: var(--text-secondary-dark);
+            --border: var(--border-dark);
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body {
+            background: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 80px;
+            position: relative;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .app-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .badge {
+            background-color: var(--danger);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+        }
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        /* Form Styles */
+        .form-section {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+        .form-toggle {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: var(--radius);
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .form-toggle svg {
+            width: 18px;
+            height: 18px;
+        }
+        .task-form {
+            display: grid;
+            gap: 16px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .form-group label {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            background: var(--card-bg);
+            color: var(--text);
+        }
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        .btn-primary:hover {
+            background: var(--primary-light);
+        }
+        /* Filter Styles */
+        .filter-section {
+            display: flex;
+            gap: 12px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--card-bg);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            color: var(--text);
+        }
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .search-box {
+            flex-grow: 1;
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            background: var(--card-bg);
+            color: var(--text);
+        }
+        /* Task List Styles */
+        .tasks-container {
+            display: grid;
+            gap: 16px;
+        }
+        .subject-header {
+            margin: 20px 0 10px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary-light);
+            font-weight: bold;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .subject-header .subject-badge {
+            background: var(--primary-light);
+            color: white;
+            border-radius: 12px;
+            padding: 2px 8px;
+            font-size: 0.8rem;
+        }
+        .task-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            transition: all 0.2s ease;
+            border-left: 4px solid var(--primary);
+            position: relative;
+        }
+        .task-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        .task-card.new {
+            border-left-color: var(--warning);
+        }
+        .task-card.done {
+            border-left-color: var(--success);
+        }
+        .task-status {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+        .status-new {
+            background: var(--warning);
+            color: white;
+        }
+        .status-opened {
+            background: var(--primary-light);
+            color: white;
+        }
+        .status-done {
+            background: var(--success);
+            color: white;
+        }
+        .task-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            padding-right: 70px;
+            color: var(--text);
+        }
+        .task-done .task-title {
+            text-decoration: line-through;
+            color: var(--text-secondary);
+        }
+        .task-details {
+            display: grid;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .task-detail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .task-detail svg {
+            width: 16px;
+            height: 16px;
+            color: var(--text-secondary);
+        }
+        .task-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+        .btn-icon {
+            padding: 6px;
+            border-radius: 6px;
+            background: transparent;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .btn-icon:hover {
+            background: var(--border);
+        }
+        .btn-done {
+            color: var(--success);
+        }
+        .btn-edit {
+            color: var(--primary);
+        }
+        .btn-delete {
+            color: var(--danger);
+        }
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+        }
+        .empty-state svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 16px;
+            color: var(--border);
+        }
+        /* Watermark Styles */
+        .watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0.3;
+            color: var(--text);
+            font-size: 14px;
+            z-index: 999;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .watermark:hover {
+            opacity: 0.7;
+        }
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            .filter-section {
+                flex-direction: column;
+            }
+            .search-box {
+                width: 100%;
+            }
+            .watermark {
+                bottom: 10px;
+                right: 10px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="app-title">Pengingat PR</h1>
+                <div class="header-actions">
+                    <div class="badge" id="newTasksBadge">0</div>
+                    <button class="theme-toggle" id="themeToggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        <section class="form-section">
+            <button class="form-toggle" id="toggleForm">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+                Tambah Tugas Baru
+            </button>
+            <form class="task-form" id="taskForm" style="display: none;">
+                <div class="form-group">
+                    <label for="taskSubject">Mata Pelajaran</label>
+                    <input type="text" id="taskSubject" required placeholder="Contoh: Matematika">
+                </div>
+                <div class="form-group">
+                    <label for="taskName">Deskripsi Tugas</label>
+                    <input type="text" id="taskName" required placeholder="Contoh: Mengerjakan soal halaman 20-25, no 1-10">
+                </div>
+                <div class="form-group">
+                    <label for="taskDeadline">Deadline</label>
+                    <input type="date" id="taskDeadline" required>
+                </div>
+                <div class="form-group">
+                    <label for="taskNotes">Catatan (opsional)</label>
+                    <textarea id="taskNotes" placeholder="Tambahkan catatan atau penjelasan tambahan"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Simpan Tugas</button>
+            </form>
+        </section>
+        <section class="filter-section">
+            <button class="filter-btn active" data-filter="all">Semua Tugas</button>
+            <button class="filter-btn" data-filter="new">Belum Dibaca</button>
+            <button class="filter-btn" data-filter="active">Belum Selesai</button>
+            <button class="filter-btn" data-filter="done">Selesai</button>
+            <input type="text" class="search-box" id="searchBox" placeholder="Cari tugas atau mata pelajaran...">
+        </section>
+        <section class="tasks-container" id="tasksContainer">
+            <!-- Tasks will be loaded here -->
+        </section>
+    </main>
+    <!-- Watermark -->
+    <div class="watermark">by Rahmat</div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const taskForm = document.getElementById('taskForm');
+            const toggleFormBtn = document.getElementById('toggleForm');
+            const tasksContainer = document.getElementById('tasksContainer');
+            const newTasksBadge = document.getElementById('newTasksBadge');
+            const searchBox = document.getElementById('searchBox');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const themeToggle = document.getElementById('themeToggle');
+            // State
+            let currentFilter = 'all';
+            let searchQuery = '';
+            let tasks = [];
+            
+            // Initialize tasks from localStorage or use empty array
+            try {
+                const savedTasks = localStorage.getItem('pr_tasks');
+                tasks = savedTasks ? JSON.parse(savedTasks) : [];
+            } catch (e) {
+                tasks = [];
+            }
+            
+            // Check for dark mode preference
+            let darkMode = false;
+            try {
+                darkMode = localStorage.getItem('darkMode') === 'true';
+            } catch (e) {
+                darkMode = false;
+            }
+            
+            // Apply dark mode if needed
+            if (darkMode) {
+                document.body.classList.add('dark-mode');
+            }
+            
+            // Initialize UI
+            updateBadge();
+            renderTasks();
+            
+            // Event Listeners
+            toggleFormBtn.addEventListener('click', function() {
+                const isFormVisible = taskForm.style.display === 'grid' || taskForm.style.display === '';
+                taskForm.style.display = isFormVisible ? 'none' : 'grid';
+                toggleFormBtn.innerHTML = isFormVisible ? 
+                    '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>Tambah Tugas Baru' : 
+                    '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Tutup Form';
+            });
+            
+            taskForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const newTask = {
+                    id: Date.now(),
+                    subject: document.getElementById('taskSubject').value,
+                    name: document.getElementById('taskName').value,
+                    deadline: document.getElementById('taskDeadline').value,
+                    notes: document.getElementById('taskNotes').value,
+                    status: 'new', // new, opened, done
+                    createdAt: new Date().toISOString()
+                };
+                
+                tasks.unshift(newTask);
+                saveTasks();
+                taskForm.reset();
+                taskForm.style.display = 'none';
+                toggleFormBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>Tambah Tugas Baru';
+                updateBadge();
+                renderTasks();
+            });
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.dataset.filter;
+                    renderTasks();
+                });
+            });
+            
+            searchBox.addEventListener('input', function() {
+                searchQuery = this.value.toLowerCase();
+                renderTasks();
+            });
+            
+            themeToggle.addEventListener('click', function() {
+                darkMode = !darkMode;
+                if (darkMode) {
+                    document.body.classList.add('dark-mode');
+                } else {
+                    document.body.classList.remove('dark-mode');
+                }
+                try {
+                    localStorage.setItem('darkMode', darkMode);
+                } catch (e) {
+                    console.log("LocalStorage not available, but theme toggle still works");
+                }
+            });
+            
+            // Functions
+            function saveTasks() {
+                try {
+                    localStorage.setItem('pr_tasks', JSON.stringify(tasks));
+                } catch (e) {
+                    console.log("LocalStorage not available, but tasks are stored in memory");
+                }
+            }
+            
+            function updateBadge() {
+                const newTasksCount = tasks.filter(task => task.status === 'new').length;
+                newTasksBadge.textContent = newTasksCount;
+                newTasksBadge.style.display = newTasksCount > 0 ? 'flex' : 'none';
+            }
+            
+            function renderTasks() {
+                // Clear container
+                tasksContainer.innerHTML = '';
+                
+                // Filter tasks based on current filter and search query
+                let filteredTasks = tasks.filter(task => {
+                    const matchesSearch = searchQuery === '' || 
+                                        task.name.toLowerCase().includes(searchQuery) || 
+                                        task.subject.toLowerCase().includes(searchQuery);
+                    if (currentFilter === 'all') return matchesSearch;
+                    if (currentFilter === 'new') return task.status === 'new' && matchesSearch;
+                    if (currentFilter === 'active') return task.status !== 'done' && matchesSearch;
+                    if (currentFilter === 'done') return task.status === 'done' && matchesSearch;
+                    return matchesSearch;
+                });
+                
+                // Display message if no tasks
+                if (filteredTasks.length === 0) {
+                    tasksContainer.innerHTML = `
+                        <div class="empty-state">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <p>Tidak ada tugas yang ditemukan</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Group tasks by subject
+                const tasksBySubject = {};
+                filteredTasks.forEach(task => {
+                    if (!tasksBySubject[task.subject]) {
+                        tasksBySubject[task.subject] = [];
+                    }
+                    tasksBySubject[task.subject].push(task);
+                });
+                
+                // Render tasks grouped by subject
+                for (const subject in tasksBySubject) {
+                    const subjectTasks = tasksBySubject[subject];
+                    const subjectHeader = document.createElement('div');
+                    subjectHeader.className = 'subject-header';
+                    subjectHeader.innerHTML = `
+                        <span>${subject}</span>
+                        <span class="subject-badge">${subjectTasks.length}</span>
+                    `;
+                    tasksContainer.appendChild(subjectHeader);
+                    
+                    subjectTasks.forEach(task => {
+                        const taskCard = document.createElement('div');
+                        taskCard.className = `task-card ${task.status === 'new' ? 'new' : ''} ${task.status === 'done' ? 'done' : ''}`;
+                        
+                        const statusText = task.status === 'new' ? 'Baru' : 
+                                          task.status === 'opened' ? 'Dibaca' : 'Selesai';
+                        const statusClass = task.status === 'new' ? 'status-new' : 
+                                           task.status === 'opened' ? 'status-opened' : 'status-done';
+                        
+                        // Format deadline
+                        const deadlineDate = new Date(task.deadline);
+                        const formattedDeadline = deadlineDate.toLocaleDateString('id-ID', {
+                            weekday: 'long',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                        
+                        taskCard.innerHTML = `
+                            <div class="task-status ${statusClass}">${statusText}</div>
+                            <h3 class="task-title">${task.name}</h3>
+                            <div class="task-details">
+                                <div class="task-detail">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                    <span>Mata Pelajaran: ${task.subject}</span>
+                                </div>
+                                <div class="task-detail">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Deadline: ${formattedDeadline}</span>
+                                </div>
+                                ${task.notes ? `
+                                <div class="task-detail">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9M12 14v6m-6-3a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    <span>Catatan: ${task.notes}</span>
+                                </div>
+                                ` : ''}
+                            </div>
+                            <div class="task-actions">
+                                ${task.status !== 'done' ? `
+                                <button class="btn-icon btn-done" data-id="${task.id}" data-action="complete">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </button>
+                                ` : ''}
+                                <button class="btn-icon btn-edit" data-id="${task.id}" data-action="edit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                    </svg>
+                                </button>
+                                <button class="btn-icon btn-delete" data-id="${task.id}" data-action="delete">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+                            </div>
+                        `;
+                        tasksContainer.appendChild(taskCard);
+                    });
+                }
+                
+                // Add event listeners to action buttons
+                document.querySelectorAll('.btn-icon').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const taskId = parseInt(this.dataset.id);
+                        const action = this.dataset.action;
+                        handleTaskAction(taskId, action);
+                    });
+                });
+                
+                // Add click event to mark as opened
+                document.querySelectorAll('.task-card').forEach(card => {
+                    card.addEventListener('click', function(e) {
+                        if (!e.target.closest('.task-actions')) {
+                            const taskId = parseInt(this.querySelector('.btn-icon')?.dataset.id);
+                            if (taskId) {
+                                const task = tasks.find(t => t.id === taskId);
+                                if (task && task.status === 'new') {
+                                    task.status = 'opened';
+                                    saveTasks();
+                                    updateBadge();
+                                    renderTasks();
+                                }
+                            }
+                        }
+                    });
+                });
+            }
+            
+            function handleTaskAction(taskId, action) {
+                const taskIndex = tasks.findIndex(t => t.id === taskId);
+                if (taskIndex === -1) return;
+                
+                switch (action) {
+                    case 'complete':
+                        tasks[taskIndex].status = 'done';
+                        break;
+                    case 'edit':
+                        const task = tasks[taskIndex];
+                        document.getElementById('taskSubject').value = task.subject;
+                        document.getElementById('taskName').value = task.name;
+                        document.getElementById('taskDeadline').value = task.deadline;
+                        document.getElementById('taskNotes').value = task.notes || '';
+                        tasks.splice(taskIndex, 1);
+                        taskForm.style.display = 'grid';
+                        toggleFormBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Tutup Form';
+                        window.scrollTo(0, 0);
+                        break;
+                    case 'delete':
+                        if (confirm('Apakah Anda yakin ingin menghapus tugas ini?')) {
+                            tasks.splice(taskIndex, 1);
+                        }
+                        break;
+                }
+                
+                saveTasks();
+                updateBadge();
+                renderTasks();
+            }
+        });
+    </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
