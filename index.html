@@ -1,797 +1,394 @@
 <!DOCTYPE html>
-<html lang="id" id="html-root">
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#3B82F6" />
-  <title>Pengingat PR</title>
-  <link rel="manifest" href="application/json;base64,ewogICJuYW1lIjogIlBlbmdpbmdhdCBSUCIsCiAgInNob3J0X25hbWUiOiAiUFIgUmVtaW5kZXIiLAogICJzdGFydF91cmwiOiAiLi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMzQjgyRjYiLAogICJ0aGVtZV9jb2xvciI6ICIjM0I4MkY2IiwKICAic2NvcGVzIjogIi8iLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgImNyZWF0ZWQiOiAiYXV0byIsCiAgICAgICJwb2ludHMtdG8tdXBncmFkZSI6IGZhbHNlLAogICAgICAic3JjIjogImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU29aUUFTQUJBUUJBUUZBQUFBQjBZQUFBQUM4d0FBQUFBU2tKUVV6S0NBZ0VBQWdFQVlYTndiRzl5WlM4eU1qQXpNREF3TUM5emRtYzhkV1J2Y21WaGJDOWpjbWwwZVZObGNuUnpMMmQzZHk5c2IyTmhiR2wwTG1OdmJTSStQRUErUENBd0RRb0NBZ2dEQVNBQ0FJQkFVRUJBSUZBZ1FGQkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QUFBQTRJQUFDSVFEQkF3Q0NBa0V3Z2dFRkFRTUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ3QkFRRUJBUUZBQVZ......" type="image/png" size="192x192"
-  }
-  ]
-}">
-  <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='192' height='192' viewBox='0 0 192 192'><rect width='100%' height='100%' fill='%233B82F6'/><text x='50%' y='50%' dominant-baseline='central' text-anchor='middle' font-size='48' fill='white'>📝</text></svg>">
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <style>
-    :root {
-      /* Typography */
-      --text-xs: 0.75rem;
-      --text-sm: 0.875rem;
-      --text-base: 1rem;
-      --text-lg: 1.125rem;
-      --text-xl: 1.25rem;
-      --text-2xl: 1.5rem;
-      --font-medium: 500;
-      --font-semibold: 600;
-      --font-bold: 700;
-
-      /* Spacing */
-      --space-1: 0.25rem;
-      --space-2: 0.5rem;
-      --space-3: 0.75rem;
-      --space-4: 1rem;
-      --space-6: 1.5rem;
-      --space-8: 2rem;
-      --space-12: 3rem;
-
-      /* Radius */
-      --radius-sm: 0.375rem;
-      --radius: 0.5rem;
-      --radius-md: 0.625rem;
-      --radius-lg: 0.75rem;
-      --radius-xl: 1rem;
-
-      /* Shadows */
-      --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-
-      /* Colors */
-      --primary: #3B82F6;
-      --primary-500: #3B82F6;
-      --primary-600: #2563EB;
-      --success: #10B981;
-      --warning: #F59E0B;
-      --error: #EF4444;
-      --info: #06B6D4;
-      --gray-50: #F9FAFB;
-      --gray-100: #F3F4F6;
-      --gray-200: #E5E7EB;
-      --gray-300: #D1D5DB;
-      --gray-400: #9CA3AF;
-      --gray-500: #6B7280;
-      --gray-600: #4B5563;
-      --gray-700: #374151;
-      --gray-800: #1F2937;
-      --gray-900: #111827;
-
-      /* Theme Light */
-      --bg: var(--gray-50);
-      --card-bg: white;
-      --text: var(--gray-900);
-      --text-secondary: var(--gray-600);
-      --border: var(--gray-300);
-      --accent: var(--primary);
-    }
-
-    .dark-mode {
-      --bg: var(--gray-900);
-      --card-bg: #1F2937;
-      --text: var(--gray-50);
-      --text-secondary: var(--gray-400);
-      --border: var(--gray-700);
-      --accent: #60A5FA;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      font-size: var(--text-base);
-      line-height: 1.5;
-      padding-bottom: 80px;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 var(--space-4);
-    }
-
-    /* Header */
-    header {
-      background: linear-gradient(135deg, var(--primary), var(--primary-600));
-      color: white;
-      padding: var(--space-3) 0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: var(--shadow-md);
-    }
-
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .app-title {
-      font-size: var(--text-xl);
-      font-weight: var(--font-bold);
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-    }
-
-    .badge {
-      background: var(--error);
-      color: white;
-      font-size: var(--text-xs);
-      font-weight: var(--font-bold);
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .theme-toggle {
-      background: rgba(255, 255, 255, 0.2);
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      cursor: pointer;
-    }
-
-    /* Form */
-    .form-section {
-      background: var(--card-bg);
-      border-radius: var(--radius-lg);
-      padding: var(--space-4);
-      margin: var(--space-4) 0;
-      box-shadow: var(--shadow-sm);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--border);
-    }
-
-    .form-toggle {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: var(--space-2) var(--space-4);
-      border-radius: var(--radius);
-      font-weight: var(--font-semibold);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: var(--space-2);
-      margin-bottom: var(--space-4);
-    }
-
-    .task-form {
-      display: grid;
-      gap: var(--space-3);
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-1);
-    }
-
-    .form-group label {
-      font-size: var(--text-sm);
-      font-weight: var(--font-medium);
-      color: var(--text-secondary);
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      padding: var(--space-3);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--card-bg);
-      color: var(--text);
-      font-size: var(--text-base);
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: 2px solid var(--primary);
-      border-color: transparent;
-    }
-
-    .btn {
-      padding: var(--space-3) var(--space-6);
-      border: none;
-      border-radius: var(--radius);
-      font-weight: var(--font-semibold);
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s ease;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: var(--primary-600);
-    }
-
-    /* Filter & Search */
-    .filter-section {
-      display: flex;
-      gap: var(--space-2);
-      margin: var(--space-4) 0;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      padding: var(--space-2) var(--space-4);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      background: var(--card-bg);
-      color: var(--text-secondary);
-      font-size: var(--text-sm);
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .filter-btn.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-
-    .search-box {
-      flex-grow: 1;
-      padding: var(--space-2) var(--space-4);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      font-size: var(--text-sm);
-      background: var(--card-bg);
-      color: var(--text);
-    }
-
-    /* Task Cards */
-    .tasks-container {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-6);
-    }
-
-    .subject-header {
-      display: flex;
-      align-items: center;
-      gap: var(--space-2);
-      font-weight: var(--font-semibold);
-      color: var(--accent);
-      padding-bottom: var(--space-1);
-      border-bottom: 2px solid var(--primary-100);
-    }
-
-    .subject-badge {
-      background: var(--primary-100);
-      color: var(--primary-900);
-      font-size: var(--text-xs);
-      padding: 0.125rem 0.5rem;
-      border-radius: var(--radius-sm);
-    }
-
-    .task-card {
-      background: var(--card-bg);
-      border-radius: var(--radius-lg);
-      padding: var(--space-4);
-      box-shadow: var(--shadow-sm);
-      border-left: 4px solid var(--primary);
-      position: relative;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .task-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .task-card.done {
-      border-left-color: var(--success);
-      opacity: 0.8;
-    }
-
-    .task-status {
-      position: absolute;
-      top: var(--space-4);
-      right: var(--space-4);
-      font-size: var(--text-xs);
-      padding: 0.25rem 0.5rem;
-      border-radius: var(--radius-sm);
-      font-weight: var(--font-semibold);
-    }
-
-    .status-new { background: var(--warning); color: white; }
-    .status-opened { background: var(--info); color: white; }
-    .status-done { background: var(--success); color: white; }
-
-    .task-title {
-      font-weight: var(--font-semibold);
-      margin-bottom: var(--space-3);
-      color: var(--text);
-    }
-
-    .task-done .task-title {
-      text-decoration: line-through;
-      color: var(--text-secondary);
-    }
-
-    .task-details {
-      display: grid;
-      gap: var(--space-2);
-      margin-bottom: var(--space-4);
-    }
-
-    .task-detail {
-      display: flex;
-      align-items: center;
-      gap: var(--space-2);
-      font-size: var(--text-sm);
-      color: var(--text-secondary);
-    }
-
-    .task-detail svg {
-      width: 16px;
-      height: 16px;
-      color: var(--text-secondary);
-    }
-
-    .task-actions {
-      display: flex;
-      gap: var(--space-2);
-      justify-content: flex-end;
-    }
-
-    .btn-icon {
-      padding: var(--space-2);
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      background: transparent;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s ease;
-    }
-
-    .btn-icon:hover {
-      background: var(--gray-100);
-    }
-
-    .btn-done { color: var(--success); }
-    .btn-edit { color: var(--primary); }
-    .btn-delete { color: var(--error); }
-
-    .empty-state {
-      text-align: center;
-      padding: var(--space-12) var(--space-4);
-      color: var(--text-secondary);
-    }
-
-    .empty-state svg {
-      width: 64px;
-      height: 64px;
-      margin-bottom: var(--space-4);
-      color: var(--border);
-    }
-
-    .watermark {
-      position: fixed;
-      bottom: 12px;
-      right: 12px;
-      font-size: var(--text-xs);
-      color: var(--text-secondary);
-      opacity: 0.3;
-      z-index: 999;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .watermark:hover {
-      opacity: 0.7;
-    }
-
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .animate-in {
-      animation: fadeIn 0.3s ease forwards;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      .filter-section {
-        flex-direction: column;
-      }
-      .search-box {
-        width: 100%;
-      }
-      .header-actions {
-        gap: 10px;
-      }
-      .watermark {
-        font-size: 10px;
-        bottom: 8px;
-        right: 8px;
-      }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>TugasKu - Update Tahap 4 v1.3.0</title>
+  <meta name="app-version" content="1.3.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="assets/my-icon.png">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
 
-  <header>
+<div id="splash" style="position:fixed;inset:0;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;">
+  <img src="assets/splash.png" alt="Splash" style="width:100%;height:100%;object-fit:cover;">
+</div>
+
+<div id="mainContent" style="display:none;">
+  <!-- Semua isi web -->
+</div>
+
+<script>
+  setTimeout(() => {
+    document.getElementById('splash').style.display = 'none';
+    document.getElementById('mainContent').style.display = 'block';
+  }, 2500);
+</script>
+
+<body>
+  <div id="mainContent">
     <div class="container">
-      <div class="header-content">
-        <h1 class="app-title">Pengingat PR</h1>
+      <header>
+        <div class="brand">
+          <div class="logo">
+            <img src="assets/my-icon.png" alt="App Icon" class="app-icon">
+          </div>
+          <h1>TugasKu</h1>
+        </div>
         <div class="header-actions">
-          <div class="badge" id="newTasksBadge">0</div>
-          <button class="theme-toggle" id="themeToggle">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
+          <!-- Tombol AI Chat (BARU) -->
+          <a href="ai.html" class="icon-btn" title="AI Assistant">🤖</a>
+          <button class="icon-btn" id="tipsBtn" title="Tips & Panduan">💡</button>
+          <button class="icon-btn" id="notifBtn" title="Notifikasi">
+            🔔
+            <span class="badge" id="notifBadge" style="display:none;">0</span>
           </button>
+          <button class="icon-btn" id="statsBtn" title="Statistik">📊</button>
+          <button class="icon-btn" id="settingsBtn" title="Pengaturan">⚙️</button>
+          <div class="settings-menu" id="settingsMenu">
+            <div class="settings-item" data-action="theme">
+              <span>🎨</span> Pilih Tema
+            </div>
+            <div class="settings-item" data-action="about">
+              <span>ℹ️</span> Tentang
+            </div>
+            <div class="settings-item" data-action="reset">
+              <span>🔄</span> Reset Data
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="tab-navigation">
+        <button class="tab-btn active" data-tab="tasks">Tugas</button>
+        <button class="tab-btn" data-tab="schedule">Jadwal</button>
+        <button class="tab-btn" data-tab="notes">Catatan</button>
+      </div>
+
+      <div class="tab-content active" id="tasksTab">
+        <section class="form-section" aria-labelledby="formTitle">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:12px;flex-wrap:wrap">
+            <strong id="formTitle" style="font-size:18px;">Tambah Tugas</strong>
+            <div class="controls">
+              <button id="openFormBtn" class="btn" aria-expanded="false">➕ Tambah</button>
+              <button id="clearAll" class="filter-btn" title="Hapus semua tugas">🗑️ Hapus Semua</button>
+            </div>
+          </div>
+          <form id="taskForm" style="display:none" aria-hidden="true" novalidate>
+            <div class="field">
+              <label for="taskSubject">Mata Pelajaran</label>
+              <input type="text" id="taskSubject" placeholder="e.g. Matematika" required>
+            </div>
+            <div class="field">
+              <label for="taskName">Nama Tugas</label>
+              <input type="text" id="taskName" placeholder="e.g. PR Halaman 10" required>
+            </div>
+            <div class="field">
+              <label for="taskDeadline">Deadline</label>
+              <input type="date" id="taskDeadline" required>
+            </div>
+            <div class="field">
+              <label for="taskNotes">Catatan (Opsional)</label>
+              <textarea id="taskNotes" placeholder="Catatan tambahan..."></textarea>
+            </div>
+            <div class="field">
+              <label for="taskPriority">Prioritas</label>
+              <select id="taskPriority">
+                <option value="low">Rendah</option>
+                <option value="medium" selected>Sedang</option>
+                <option value="high">Tinggi</option>
+              </select>
+            </div>
+            <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px">
+              <button type="submit" class="btn">💾 Simpan</button>
+              <button type="button" id="cancelForm" class="filter-btn">❌ Batal</button>
+            </div>
+          </form>
+        </section>
+        <div class="filter-section" role="region" aria-label="Filter tugas">
+          <button class="filter-btn active" data-filter="all">Semua</button>
+          <button class="filter-btn" data-filter="new">Baru</button>
+          <button class="filter-btn" data-filter="active">Belum Selesai</button>
+          <button class="filter-btn" data-filter="done">Selesai</button>
+          <button class="filter-btn" data-filter="today">Hari Ini</button>
+          <button class="filter-btn" data-filter="tomorrow">Besok</button>
+          <button class="filter-btn" data-filter="week">Minggu Ini</button>
+          <button class="filter-btn" data-filter="overdue">Terlambat</button>
+        </div>
+        <div id="taskList"></div>
+      </div>
+
+      <div class="tab-content" id="scheduleTab">
+        <section class="form-section" aria-labelledby="scheduleFormTitle">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:12px;flex-wrap:wrap">
+            <strong id="scheduleFormTitle" style="font-size:18px;">Tambah Jadwal</strong>
+            <div class="controls">
+              <button id="addScheduleBtn" class="btn">➕ Tambah</button>
+            </div>
+          </div>
+          <form id="scheduleForm" style="display:none" aria-hidden="true" novalidate>
+            <div class="field">
+              <label for="scheduleSubject">Mata Pelajaran</label>
+              <input type="text" id="scheduleSubject" placeholder="e.g. Matematika" required>
+            </div>
+            <div class="field">
+              <label for="scheduleDay">Hari</label>
+              <select id="scheduleDay" required>
+                <option value="">Pilih Hari</option>
+                <option value="senin">Senin</option>
+                <option value="selasa">Selasa</option>
+                <option value="rabu">Rabu</option>
+                <option value="kamis">Kamis</option>
+                <option value="jumat">Jumat</option>
+                <option value="sabtu">Sabtu</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="scheduleTime">Waktu</label>
+              <input type="time" id="scheduleTime" required>
+            </div>
+            <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px">
+              <button type="submit" class="btn">💾 Simpan</button>
+              <button type="button" id="cancelScheduleForm" class="filter-btn">❌ Batal</button>
+            </div>
+          </form>
+        </section>
+        <div id="scheduleContainer"></div>
+      </div>
+
+      <div class="tab-content" id="notesTab">
+        <section class="form-section" aria-labelledby="notesFormTitle">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:12px;flex-wrap:wrap">
+            <strong id="notesFormTitle" style="font-size:18px;">Tambah Catatan</strong>
+            <div class="controls">
+              <button id="addNoteBtn" class="btn">➕ Tambah</button>
+            </div>
+          </div>
+          <form id="noteForm" style="display:none" aria-hidden="true" novalidate>
+            <div class="field">
+              <label for="noteTitle">Judul Catatan</label>
+              <input type="text" id="noteTitle" placeholder="Judul catatan..." required>
+            </div>
+            <div class="field">
+              <label for="noteContent">Isi Catatan</label>
+              <textarea id="noteContent" placeholder="Tulis catatan Anda di sini..." rows="6" required></textarea>
+            </div>
+            <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px">
+              <button type="submit" class="btn">💾 Simpan</button>
+              <button type="button" id="cancelNoteForm" class="filter-btn">❌ Batal</button>
+            </div>
+          </form>
+        </section>
+        <div id="notesList"></div>
+      </div>
+    </div>
+
+    <button class="fab" id="fab" title="Tambah Tugas/Jadwal/Catatan">+</button>
+    <div class="toast" id="toast"></div>
+    <div class="watermark">by : Rahmat - v1.3.0</div>
+  </div>
+
+  <!-- Modal About -->
+  <div class="modal-overlay" id="aboutModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Tentang TugasKu</h3>
+        <button class="modal-close" id="closeAboutModal">&times;</button>
+      </div>
+      <div class="about-section">
+        <div class="about-logo">
+          <div class="logo">
+            <img src="assets/my-icon.png" alt="App Icon" class="app-icon">
+          </div>
+          <h2>TugasKu</h2>
+          <p>Aplikasi Manajemen Tugas Sederhana</p>
+        </div>
+        <h3>Fitur Utama</h3>
+        <ul class="feature-list">
+          <li>📝 Tambah dan kelola tugas harian</li>
+          <li>📅 Jadwal pelajaran mingguan</li>
+          <li>📝 Catatan pribadi</li>
+          <li>🏷️ Filter tugas berdasarkan status dan deadline</li>
+          <li>🎨 Pilihan tema yang beragam</li>
+          <li>💾 Data tersimpan di browser (localStorage)</li>
+          <li>📱 Responsif untuk mobile dan desktop</li>
+          <li>🤖 AI Assistant untuk input otomatis</li>
+        </ul>
+        <h3 style="margin-top: 16px;">Versi: 1.3.0</h3>
+        <p style="margin-top: 8px;">Tanggal apk di uat: 30 Agustus 2025</p>
+        <p style="margin-top: 8px;">Pengembang: Rahmat, pelajar MA kelas 11</p>
+        <p style="margin-top: 8px;">Dibuat sepenuhnya menggunakan Mobile (hp)</p>
+        <p style="margin-top: 8px;">📩 Kontak: <a href="mailto:rohmatulloh.3609@gmail.com" style="color: var(--primary);">rohmatulloh.3609@gmail.com</a></p>
+        <h3 style="margin-top: 24px;">Deskripsi</h3>
+        <p>TugasKu adalah aplikasi manajemen tugas sederhana yang dirancang untuk membantu siswa mengatur tugas sekolah mereka dengan mudah. Dengan antarmuka yang bersih dan fitur yang lengkap, pengguna dapat dengan cepat menambahkan, melihat, dan mengelola tugas, jadwal pelajaran, serta catatan pribadi mereka.</p>
+        <h3 style="margin-top: 24px;">Pesan dari developer </h3>
+        <p>apk ini sepenuhnya menggunakan device kentang "Oppo A3s" (harusnya kalian tau lah yaa seberapa kentangnya ni hp), jadi mohon dimaklumi jika apk ini masih banyak kurangnya. dan sepertinya tidak akan ada update lagi. Saya selaku dev. apk mengucapkan banyak terimakasih telah menggunakan apk ini. jika ada bug yg bener² fatal, bisa kontak saya di email yg sudah tertera diatas.
+        <div class="version-info">
+          <p>© 2025 TugasKu. Hak Cipta Dilindungi.</p>
         </div>
       </div>
     </div>
-  </header>
+  </div>
 
-  <main class="container">
-    <section class="form-section">
-      <button class="form-toggle" id="toggleForm">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-        </svg>
-        Tambah Tugas Baru
-      </button>
-      <form class="task-form" id="taskForm" style="display: none;">
-        <div class="form-group">
-          <label for="taskSubject">Mata Pelajaran</label>
-          <input type="text" id="taskSubject" required placeholder="Contoh: Matematika">
+  <!-- Theme Selection Modal -->
+  <div class="modal-overlay" id="themeModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Pilih Tema</h3>
+        <button class="modal-close" id="closeThemeModal">&times;</button>
+      </div>
+      <div class="about-section">
+        <div class="theme-option" data-theme="light">
+          <div class="theme-preview" style="background: linear-gradient(135deg, #3B82F6, #2563EB);">☀️</div>
+          <div>
+            <div style="font-weight: 600;">Terang</div>
+            <div style="font-size: 12px; color: var(--muted);">Tema terang standar</div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="taskName">Deskripsi Tugas</label>
-          <input type="text" id="taskName" required placeholder="Soal halaman 20-25, no 1-10">
+        <div class="theme-option" data-theme="dark-mode">
+          <div class="theme-preview" style="background: linear-gradient(135deg, #0b1220, #0f1724);">🌙</div>
+          <div>
+            <div style="font-weight: 600;">Gelap</div>
+            <div style="font-size: 12px; color: var(--muted);">Tema gelap standar</div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="taskDeadline">Deadline</label>
-          <input type="datetime-local" id="taskDeadline" required>
+        <div class="theme-option" data-theme="colorful-mode">
+          <div class="theme-preview" style="background: linear-gradient(135deg, #8B5CF6, #EC4899);">🎨</div>
+          <div>
+            <div style="font-weight: 600;">Colorful (Terang)</div>
+            <div style="font-size: 12px; color: var(--muted);">Tema warna-warni terang</div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="taskNotes">Catatan (opsional)</label>
-          <textarea id="taskNotes" placeholder="Catatan tambahan..."></textarea>
+        <div class="theme-option" data-theme="dark-mode colorful-mode">
+          <div class="theme-preview" style="background: linear-gradient(135deg, #1e1b2e, #2a2540);">🎨</div>
+          <div>
+            <div style="font-weight: 600;">Colorful (Gelap)</div>
+            <div style="font-size: 12px; color: var(--muted);">Tema warna-warni gelap</div>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary">Simpan Tugas</button>
-      </form>
-    </section>
+        <div class="theme-option" data-theme="forest-mode">
+          <div class="theme-preview" style="background: linear-gradient(135deg, #10b981, #059669);">🌲</div>
+          <div>
+            <div style="font-weight: 600;">Forest (Terang)</div>
+            <div style="font-size: 12px; color: var(--muted);">Tema hijau alami terang</div>
+          </div>
+        </div>
+        <div class="theme-option" data-theme="dark-mode forest-mode">
+          <div class="theme-preview" style="background: linear-gradient(135deg, #064e3b, #047857);">🌲</div>
+          <div>
+            <div style="font-weight: 600;">Forest (Gelap)</div>
+            <div style="font-size: 12px; color: var(--muted);">Tema hijau alami gelap</div>
+          </div>
+        </div>
+        <div class="theme-option" data-theme="dark-mode ocean-mode">
+          <div class="theme-preview" style="background: linear-gradient(135deg,#082f49,#0c4a6e);">🌊</div>
+          <div>
+            <div style="font-weight:600;">Ocean (Gelap)</div>
+            <div style="font-size:12px;color:var(--muted);">Biru laut malam</div>
+          </div>
+        </div>
+        <div class="theme-option" data-theme="sakura-mode">
+          <div class="theme-preview" style="background: linear-gradient(135deg,#f472b6,#ec4899);">🌸</div>
+          <div>
+            <div style="font-weight:600;">Sakura</div>
+            <div style="font-size:12px;color:var(--muted);">Pink blossom lembut</div>
+          </div>
+        </div>
+        <div class="theme-option" data-theme="dark-mode sakura-mode">
+          <div class="theme-preview" style="background: linear-gradient(135deg,#881337,#9f1239);">🌸</div>
+          <div>
+            <div style="font-weight:600;">Sakura (Gelap)</div>
+            <div style="font-size:12px;color:var(--muted);">Pink blossom malam</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <section class="filter-section">
-      <button class="filter-btn active" data-filter="all">Semua</button>
-      <button class="filter-btn" data-filter="new">Baru</button>
-      <button class="filter-btn" data-filter="active">Belum Selesai</button>
-      <button class="filter-btn" data-filter="done">Selesai</button>
-      <input type="text" class="search-box" id="searchBox" placeholder="Cari tugas...">
-    </section>
+  <!-- Tips Modal -->
+  <div class="modal-overlay" id="tipsModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Tips & Panduan Singkat</h3>
+        <button class="modal-close" id="closeTipsModal">&times;</button>
+      </div>
+      <div class="about-section">
+        <h4>Indikator Prioritas</h4>
+        <p>Setiap tugas memiliki indikator prioritas berbentuk lingkaran berwarna di kiri judul:</p>
+        <ul>
+          <li><strong style="color:var(--priority-high)">●</strong> Merah = Prioritas Tinggi</li>
+          <li><strong style="color:var(--priority-medium)">●</strong> Kuning = Prioritas Sedang</li>
+          <li><strong style="color:var(--priority-low)">●</strong> Hijau = Prioritas Rendah</li>
+        </ul>
+        <h4>Teks Panjang</h4>
+        <p>Nama tugas dan catatan kini dapat membungkus dan memiliki scrollbar bila sangat panjang. Arahkan kursor untuk melihat tooltip jika teks dipotong.</p>
+        <h4>Filter & Notifikasi</h4>
+        <p>Gunakan filter untuk melihat tugas berdasarkan status atau tanggal. Ikon notifikasi menampilkan jumlah tugas terlambat.</p>
+        <h4>Tambah & Edit</h4>
+        <p>Gunakan tombol ➕ atau FAB untuk menambah Tugas/Jadwal/Catatan. Untuk mengedit tugas, klik tombol ✏️ pada kartu tugas.</p>
+        <h4>AI Assistant</h4>
+        <p>Gunakan tombol 🤖 untuk mengakses AI Assistant yang dapat memahami perintah natural language untuk menambah tugas, jadwal, dan catatan secara otomatis.</p>
+      </div>
+    </div>
+  </div>
 
-    <section class="tasks-container" id="tasksContainer">
-      <!-- Tasks akan muncul di sini -->
-    </section>
-  </main>
-
-  <div class="watermark">by Rahmat</div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const taskForm = document.getElementById('taskForm');
-      const toggleFormBtn = document.getElementById('toggleForm');
-      const tasksContainer = document.getElementById('tasksContainer');
-      const newTasksBadge = document.getElementById('newTasksBadge');
-      const searchBox = document.getElementById('searchBox');
-      const filterBtns = document.querySelectorAll('.filter-btn');
-      const themeToggle = document.getElementById('themeToggle');
-
-      let darkMode = localStorage.getItem('darkMode') === 'true';
-      let currentFilter = 'all';
-      let searchQuery = '';
-      let tasks = JSON.parse(localStorage.getItem('pr_tasks') || '[]');
-
-      // Terapkan mode gelap
-      if (darkMode) document.body.classList.add('dark-mode');
-
-      // Format tanggal + waktu lokal
-      const now = new Date();
-      const pad = n => n.toString().padStart(2, '0');
-      const todayStr = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}`;
-      document.getElementById('taskDeadline').min = todayStr;
-
-      // Render awal
-      updateBadge();
-      renderTasks();
-
-      // Toggle Form
-      toggleFormBtn.addEventListener('click', () => {
-        const isHidden = taskForm.style.display === 'none';
-        taskForm.style.display = isHidden ? 'grid' : 'none';
-        toggleFormBtn.innerHTML = isHidden
-          ? `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Tutup`
-          : `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>Tambah Tugas`;
-      });
-
-      // Submit Form
-      taskForm.addEventListener('submit', e => {
-        e.preventDefault();
-        const now = new Date().toISOString();
-        const deadline = document.getElementById('taskDeadline').value;
-
-        const newTask = {
-          id: Date.now(),
-          subject: document.getElementById('taskSubject').value.trim(),
-          name: document.getElementById('taskName').value.trim(),
-          deadline: deadline,
-          notes: document.getElementById('taskNotes').value.trim(),
-          status: 'new',
-          createdAt: now
-        };
-
-        tasks.unshift(newTask);
-        saveTasks();
-        resetForm();
-        renderTasks();
-      });
-
-      // Filter & Search
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          filterBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentFilter = btn.dataset.filter;
-          renderTasks();
-        });
-      });
-
-      searchBox.addEventListener('input', () => {
-        searchQuery = searchBox.value.toLowerCase();
-        renderTasks();
-      });
-
-      themeToggle.addEventListener('click', () => {
-        darkMode = !darkMode;
-        document.body.classList.toggle('dark-mode', darkMode);
-        localStorage.setItem('darkMode', darkMode);
-      });
-
-      // Fungsi
-      function resetForm() {
-        taskForm.reset();
-        taskForm.style.display = 'none';
-        toggleFormBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>Tambah Tugas`;
-      }
-
-      function saveTasks() {
-        try {
-          localStorage.setItem('pr_tasks', JSON.stringify(tasks));
-        } catch (e) {
-          console.warn("LocalStorage penuh atau tidak tersedia.");
-        }
-      }
-
-      function updateBadge() {
-        const count = tasks.filter(t => t.status === 'new').length;
-        newTasksBadge.textContent = count;
-        newTasksBadge.style.display = count > 0 ? 'flex' : 'none';
-      }
-
-      function renderTasks() {
-        tasksContainer.innerHTML = '';
-
-        const filtered = tasks.filter(t => {
-          const matchesSearch = !searchQuery ||
-            t.name.toLowerCase().includes(searchQuery) ||
-            t.subject.toLowerCase().includes(searchQuery);
-          if (currentFilter === 'all') return matchesSearch;
-          if (currentFilter === 'new') return t.status === 'new' && matchesSearch;
-          if (currentFilter === 'active') return t.status !== 'done' && matchesSearch;
-          if (currentFilter === 'done') return t.status === 'done' && matchesSearch;
-          return matchesSearch;
-        });
-
-        if (filtered.length === 0) {
-          tasksContainer.innerHTML = `
-            <div class="empty-state">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              <p>Tidak ada tugas yang sesuai</p>
-            </div>`;
-          return;
-        }
-
-        const grouped = {};
-        filtered.forEach(t => (grouped[t.subject] = grouped[t.subject] || []).push(t));
-
-        Object.keys(grouped).sort().forEach(subject => {
-          const tasks = grouped[subject];
-          const header = document.createElement('div');
-          header.className = 'subject-header';
-          header.innerHTML = `<span>${subject}</span><span class="subject-badge">${tasks.length}</span>`;
-          tasksContainer.appendChild(header);
-
-          tasks.forEach(task => {
-            const card = document.createElement('div');
-            card.className = `task-card ${task.status === 'done' ? 'task-done' : ''} animate-in`;
-            const statusText = { new: 'Baru', opened: 'Dibaca', done: 'Selesai' }[task.status];
-            const statusClass = { new: 'status-new', opened: 'status-opened', done: 'status-done' }[task.status];
-
-            const deadline = new Date(task.deadline);
-            const formatted = deadline.toLocaleString('id-ID', {
-              dateStyle: 'full',
-              timeStyle: 'short'
-            });
-
-            card.innerHTML = `
-              <div class="task-status ${statusClass}">${statusText}</div>
-              <h3 class="task-title">${task.name}</h3>
-              <div class="task-details">
-                <div class="task-detail">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  <span>${task.subject}</span>
-                </div>
-                <div class="task-detail">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>Deadline: ${formatted}</span>
-                </div>
-                ${task.notes ? `
-                <div class="task-detail">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9M12 14v6m-6-3a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <span>Catatan: ${task.notes}</span>
-                </div>` : ''}
+  <!-- Stats Modal -->
+  <div class="modal-overlay" id="statsModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Statistik Tugas</h3>
+        <button class="modal-close" id="closeStatsModal">&times;</button>
+      </div>
+      <div class="about-section">
+        <div class="chart-wrap">
+          <canvas id="statusChart" class="chart-canvas"></canvas>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="priorityChart" class="chart-canvas"></canvas>
+        </div>
+        <div style="margin-top: 12px;">
+          <h4>Ringkasan</h4>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value" id="totalTasks">0</div>
+              <div class="stat-label">Total Tugas</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="completedTasks">0</div>
+              <div class="stat-label">Selesai</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="pendingTasks">0</div>
+              <div class="stat-label">Belum Selesai</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="overdueTasks">0</div>
+              <div class="stat-label">Terlambat</div>
+            </div>
+          </div>
+          <div style="margin-top: 24px;">
+            <h4>Prioritas Tugas</h4>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-value" id="highPriorityTasks">0</div>
+                <div class="stat-label">Tinggi</div>
               </div>
-              <div class="task-actions">
-                ${task.status !== 'done' ? `
-                <button class="btn-icon btn-done" data-id="${task.id}" data-action="complete">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                </button>` : ''}
-                <button class="btn-icon btn-edit" data-id="${task.id}" data-action="edit">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                  </svg>
-                </button>
-                <button class="btn-icon btn-delete" data-id="${task.id}" data-action="delete">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                  </svg>
-                </button>
+              <div class="stat-card">
+                <div class="stat-value" id="mediumPriorityTasks">0</div>
+                <div class="stat-label">Sedang</div>
               </div>
-            `;
-            tasksContainer.appendChild(card);
-          });
-        });
+              <div class="stat-card">
+                <div class="stat-value" id="lowPriorityTasks">0</div>
+                <div class="stat-label">Rendah</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        // Event listener untuk aksi
-        document.querySelectorAll('.btn-icon').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const id = parseInt(btn.dataset.id);
-            const action = btn.dataset.action;
-            handleAction(id, action);
-          });
-        });
-
-        // Klik card untuk mark as "opened"
-        document.querySelectorAll('.task-card').forEach(card => {
-          card.addEventListener('click', function(e) {
-            if (!e.target.closest('.btn-icon')) {
-              const id = this.querySelector('.btn-icon')?.dataset.id;
-              if (id) {
-                const task = tasks.find(t => t.id == id);
-                if (task && task.status === 'new') {
-                  task.status = 'opened';
-                  saveTasks();
-                  updateBadge();
-                  renderTasks();
-                }
-              }
-            }
-          });
-        });
-      }
-
-      function handleAction(id, action) {
-        const idx = tasks.findIndex(t => t.id === id);
-        if (idx === -1) return;
-
-        if (action === 'complete') {
-          tasks[idx].status = 'done';
-        } else if (action === 'edit') {
-          const t = tasks[idx];
-          document.getElementById('taskSubject').value = t.subject;
-          document.getElementById('taskName').value = t.name;
-          document.getElementById('taskDeadline').value = t.deadline;
-          document.getElementById('taskNotes').value = t.notes || '';
-          tasks.splice(idx, 1);
-          taskForm.style.display = 'grid';
-          toggleFormBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>Tutup`;
-          window.scrollTo(0, 0);
-        } else if (action === 'delete') {
-          if (confirm('Hapus tugas ini?')) {
-            tasks.splice(idx, 1);
-          }
-        }
-
-        saveTasks();
-        updateBadge();
-        renderTasks();
-      }
-
-      // ✅ Service Worker Registration (PWA)
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js').catch(console.error);
-      }
-    });
-  </script>
-
-  <!-- Service Worker Inline (simulasi) -->
-  <script id="sw-template">
-    // Simpan sebagai sw.js
-    self.addEventListener('push', event => {
-      const data = event.data.json();
-      event.waitUntil(
-        self.registration.showNotification(data.title, {
-          body: data.body,
-          icon: 'image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22192%22 height=%22192%22 viewBox=%220 0 192 192%22><rect width=%22100%%22 height=%22100%%22 fill=%22#3B82F6%22/><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-size=%2248%22 fill=%22white%22>📝</text></svg>',
-          badge: 'data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2296%22 height=%2296%22 viewBox=%220 0 96 96%22><rect width=%22100%%22 height=%22100%%22 fill=%22#3B82F6%22/></svg>'
-        })
-      );
-    });
-
-    self.addEventListener('notificationclick', event => {
-      event.notification.close();
-      event.waitUntil(clients.openWindow('./'));
-    });
-  </script>
-</body>
-</html>
-<!-- partial -->
-  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
