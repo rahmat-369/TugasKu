@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>TugasKu - AI Assistant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/my-icon.png">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="btn btn-outline" onclick="window.location.href='index.html'">&larr; Kembali</button>
+            <h1>AI Assistant</h1>
+            <img src="assets/my-icon.png" alt="Logo">
+        </header>
+
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message ai">
+                    Halo! Saya adalah AI Assistant TugasKu. Kirimkan saya pesan seperti "besok ada tugas matematika halaman 20, bawa penggaris dan alat hitung, jika tidak dikerjakan lari lapangan 100x".
+                </div>
+            </div>
+
+            <div class="message-input-container">
+                <input type="text" class="message-input" id="messageInput" placeholder="Ketik pesan Anda..." onkeypress="if(event.key==='Enter'){sendMessage();}">
+                <button class="send-btn" onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Typing Indicator -->
+    <div class="typing-indicator" id="typingIndicator" style="display: none;">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Preview Modal -->
+    <div class="modal-overlay" id="previewModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Pratinjau & Edit</h2>
+                <button class="modal-close" onclick="closeModal(document.getElementById('previewModal'))">&times;</button>
+            </div>
+            <div id="previewModalContent">
+                <!-- Content filled by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="assets/app.js" defer></script>
+
+    <script>
+        // Simple send function for the AI page
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            if (message) {
+                processAIMessage(message);
+                input.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
