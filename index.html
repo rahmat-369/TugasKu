@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>TugasKu - Update Tahap 3 v1.2.0</title>
+  <meta name="app-version" content="1.2.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="assets/my-icon.png" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Chart.js CDN (kept as external for simplicity) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+  <script>
+    // lightweight guard: prevent older browsers from throwing too early for module files
+    if (!('querySelector' in document)) {
+      document.documentElement.className += ' no-js';
+    }
+  </script>
+</head>
+<body>
+  <!-- Splash (moved inside body; single mainContent below) -->
+  <div id="splash" class="splash">
+    <img src="assets/splash.png" alt="Splash" class="splash-image" />
+  </div>
+
+  <main id="app">
+    <div class="container">
+      <!-- Header -->
+      <header>
+        <div class="brand">
+          <div class="logo">
+            <img src="assets/my-icon.png" alt="App Icon" class="app-icon" />
+          </div>
+          <h1>TugasKu</h1>
+        </div>
+        <div class="header-actions">
+          <button class="icon-btn" id="tipsBtn" title="Tips & Panduan">💡</button>
+          <button class="icon-btn" id="notifBtn" title="Notifikasi">
+            🔔
+            <span class="badge" id="notifBadge" style="display:none;">0</span>
+          </button>
+          <button class="icon-btn" id="statsBtn" title="Statistik">📊</button>
+          <div class="settings">
+            <button class="icon-btn" id="settingsBtn" title="Pengaturan">⚙️</button>
+            <div class="settings-menu" id="settingsMenu" aria-hidden="true">
+              <div class="settings-item" data-action="theme">
+                <span>🎨</span> Pilih Tema
+              </div>
+              <div class="settings-item" data-action="about">
+                <span>ℹ️</span> Tentang
+              </div>
+              <div class="settings-item" data-action="reset">
+                <span>🔄</span> Reset Data
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Tab Navigation -->
+      <div class="tab-navigation" role="tablist" aria-label="Navigasi">
+        <button class="tab-btn active" data-tab="tasks" role="tab" aria-selected="true">Tugas</button>
+        <button class="tab-btn" data-tab="schedule" role="tab" aria-selected="false">Jadwal</button>
+        <button class="tab-btn" data-tab="notes" role="tab" aria-selected="false">Catatan</button>
+      </div>
+
+      <!-- Tab Content: Tugas -->
+      <section class="tab-content active" id="tasksTab" role="tabpanel" aria-labelledby="tasksTabBtn">
+        <section class="form-section" aria-labelledby="formTitle">
+          <div class="form-header">
+            <strong id="formTitle">Tambah Tugas</strong>
+            <div class="controls">
+              <button id="openFormBtn" class="btn" aria-expanded="false">➕ Tambah</button>
+              <button id="clearAll" class="filter-btn" title="Hapus semua tugas">🗑️ Hapus Semua</button>
+            </div>
+          </div>
+          <form id="taskForm" class="hidden" aria-hidden="true" novalidate>
+            <div class="field">
+              <label for="taskSubject">Mata Pelajaran</label>
+              <input type="text" id="taskSubject" placeholder="e.g. Matematika" required />
+            </div>
+            <div class="field">
+              <label for="taskName">Nama Tugas</label>
+              <input type="text" id="taskName" placeholder="e.g. PR Halaman 10" required />
+            </div>
+            <div class="field">
+              <label for="taskDeadline">Deadline</label>
+              <input type="date" id="taskDeadline" required />
+            </div>
+            <div class="field">
+              <label for="taskNotes">Catatan (Opsional)</label>
+              <textarea id="taskNotes" placeholder="Catatan tambahan..."></textarea>
+            </div>
+            <div class="field">
+              <label for="taskPriority">Prioritas</label>
+              <select id="taskPriority">
+                <option value="low">Rendah</option>
+                <option value="medium" selected>Sedang</option>
+                <option value="high">Tinggi</option>
+              </select>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn">💾 Simpan</button>
+              <button type="button" id="cancelForm" class="filter-btn">❌ Batal</button>
+            </div>
+          </form>
+        </section>
+
+        <div class="filter-section" role="region" aria-label="Filter tugas">
+          <button class="filter-btn active" data-filter="all">Semua</button>
+          <button class="filter-btn" data-filter="new">Baru</button>
+          <button class="filter-btn" data-filter="active">Belum Selesai</button>
+          <button class="filter-btn" data-filter="done">Selesai</button>
+          <button class="filter-btn" data-filter="today">Hari Ini</button>
+          <button class="filter-btn" data-filter="tomorrow">Besok</button>
+          <button class="filter-btn" data-filter="week">Minggu Ini</button>
+          <button class="filter-btn" data-filter="overdue">Terlambat</button>
+        </div>
+
+        <div id="taskList" class="list-container" aria-live="polite">
+          <!-- Task cards will be rendered here by JS -->
+        </div>
+      </section>
+
+      <!-- Tab Content: Jadwal -->
+      <section class="tab-content" id="scheduleTab">
+        <section class="form-section" aria-labelledby="scheduleFormTitle">
+          <div class="form-header">
+            <strong id="scheduleFormTitle">Tambah Jadwal</strong>
+            <div class="controls">
+              <button id="addScheduleBtn" class="btn">➕ Tambah</button>
+            </div>
+          </div>
+          <form id="scheduleForm" class="hidden" aria-hidden="true" novalidate>
+            <div class="field">
+              <label for="scheduleSubject">Mata Pelajaran</label>
+              <input type="text" id="scheduleSubject" placeholder="e.g. Matematika" required />
+            </div>
+            <div class="field">
+              <label for="scheduleDay">Hari</label>
+              <select id="scheduleDay" required>
+                <option value="">Pilih Hari</option>
+                <option value="senin">Senin</option>
+                <option value="selasa">Selasa</option>
+                <option value="rabu">Rabu</option>
+                <option value="kamis">Kamis</option>
+                <option value="jumat">Jumat</option>
+                <option value="sabtu">Sabtu</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="scheduleTime">Waktu</label>
+              <input type="time" id="scheduleTime" required />
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn">💾 Simpan</button>
+              <button type="button" id="cancelScheduleForm" class="filter-btn">❌ Batal</button>
+            </div>
+          </form>
+        </section>
+
+        <div id="scheduleContainer" class="list-container" aria-live="polite">
+          <!-- Schedule items will be rendered here -->
+        </div>
+      </section>
+
+      <!-- Tab Content: Catatan -->
+      <section class="tab-content" id="notesTab">
+        <section class="form-section" aria-labelledby="notesFormTitle">
+          <div class="form-header">
+            <strong id="notesFormTitle">Tambah Catatan</strong>
+            <div class="controls">
+              <button id="addNoteBtn" class="btn">➕ Tambah</button>
+            </div>
+          </div>
+          <form id="noteForm" class="hidden" aria-hidden="true" novalidate>
+            <div class="field">
+              <label for="noteTitle">Judul Catatan</label>
+              <input type="text" id="noteTitle" placeholder="Judul catatan..." required />
+            </div>
+            <div class="field">
+              <label for="noteContent">Isi Catatan</label>
+              <textarea id="noteContent" placeholder="Tulis catatan Anda di sini..." rows="6" required></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn">💾 Simpan</button>
+              <button type="button" id="cancelNoteForm" class="filter-btn">❌ Batal</button>
+            </div>
+          </form>
+        </section>
+
+        <div id="notesList" class="list-container" aria-live="polite">
+          <!-- Notes will be rendered here -->
+        </div>
+      </section>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="fab" id="fab" title="Tambah Tugas/Jadwal/Catatan">+</button>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <!-- Watermark -->
+    <div class="watermark" id="watermark">by : Rahmat - v1.2.0</div>
+  </main>
+
+  <!-- Modals -->
+  <div class="modal-overlay" id="aboutModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+      <div class="modal-header">
+        <h3 id="aboutTitle">Tentang TugasKu</h3>
+        <button class="modal-close" id="closeAboutModal">&times;</button>
+      </div>
+      <div class="about-section">
+        <div class="about-logo">
+          <div class="logo">
+            <img src="assets/my-icon.png" alt="App Icon" class="app-icon" />
+          </div>
+          <h2>TugasKu</h2>
+          <p>Aplikasi Manajemen Tugas Sederhana</p>
+        </div>
+        <h3>Fitur Utama</h3>
+        <ul class="feature-list">
+          <li>📝 Tambah dan kelola tugas harian</li>
+          <li>📅 Jadwal pelajaran mingguan</li>
+          <li>📝 Catatan pribadi</li>
+          <li>🏷️ Filter tugas berdasarkan status dan deadline</li>
+          <li>🎨 Pilihan tema yang beragam</li>
+          <li>💾 Data tersimpan di browser (localStorage)</li>
+          <li>📱 Responsif untuk mobile dan desktop</li>
+        </ul>
+
+        <div class="version-info">
+          <p>Versi: 1.2.0</p>
+          <p>© 2025 TugasKu. Hak Cipta Dilindungi.</p>
+          <p>Pengembang: Rahmat, pelajar MA kelas 11</p>
+          <p>Kontak: <a href="mailto:rohmatulloh.3609@gmail.com">rohmatulloh.3609@gmail.com</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="themeModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="themeTitle">
+      <div class="modal-header">
+        <h3 id="themeTitle">Pilih Tema</h3>
+        <button class="modal-close" id="closeThemeModal">&times;</button>
+      </div>
+      <div class="about-section">
+        <div class="theme-option" data-theme="light">
+          <div class="theme-preview">☀️</div>
+          <div>
+            <div class="theme-name">Terang</div>
+            <div class="theme-desc">Tema terang standar</div>
+          </div>
+        </div>
+        <div class="theme-option" data-theme="dark-mode">
+          <div class="theme-preview">🌙</div>
+          <div>
+            <div class="theme-name">Gelap</div>
+            <div class="theme-desc">Tema gelap standar</div>
+          </div>
+        </div>
+        <div class="theme-option" data-theme="colorful-mode">
+          <div class="theme-preview">🎨</div>
+          <div>
+            <div class="theme-name">Colorful</div>
+            <div class="theme-desc">Warna-warni terang</div>
+          </div>
+        </div>
+        <div class="theme-option" data-theme="forest-mode">
+          <div class="theme-preview">🌲</div>
+          <div>
+            <div class="theme-name">Forest</div>
+            <div class="theme-desc">Hijau alami</div>
+          </div>
+        </div>
+        <div class="theme-option" data-theme="sakura-mode">
+          <div class="theme-preview">🌸</div>
+          <div>
+            <div class="theme-name">Sakura</div>
+            <div class="theme-desc">Pink blossom</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="tipsModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tipsTitle">
+      <div class="modal-header">
+        <h3 id="tipsTitle">Tips & Panduan Singkat</h3>
+        <button class="modal-close" id="closeTipsModal">&times;</button>
+      </div>
+      <div class="about-section">
+        <h4>Indikator Prioritas</h4>
+        <p>Setiap tugas memiliki indikator prioritas berbentuk lingkaran berwarna di kiri judul.</p>
+        <h4>Teks Panjang</h4>
+        <p>Nama tugas dan catatan kini dapat membungkus dan memiliki scrollbar bila sangat panjang.</p>
+        <h4>Filter & Notifikasi</h4>
+        <p>Gunakan filter untuk melihat tugas berdasarkan status atau tanggal.</p>
+        <h4>Tambah & Edit</h4>
+        <p>Gunakan tombol ➕ atau FAB untuk menambah item. Untuk edit, gunakan tombol ✏️ pada kartu.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="statsModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="statsTitle">
+      <div class="modal-header">
+        <h3 id="statsTitle">Statistik Tugas</h3>
+        <button class="modal-close" id="closeStatsModal">&times;</button>
+      </div>
+      <div class="about-section">
+        <div class="chart-wrap">
+          <canvas id="statusChart" class="chart-canvas"></canvas>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="priorityChart" class="chart-canvas"></canvas>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="totalTasks">0</div>
+            <div class="stat-label">Total Tugas</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="completedTasks">0</div>
+            <div class="stat-label">Selesai</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="pendingTasks">0</div>
+            <div class="stat-label">Belum Selesai</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="overdueTasks">0</div>
+            <div class="stat-label">Terlambat</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Module scripts (order matters) -->
+  <script type="module" src="js/utils.js"></script>
+  <script type="module" src="js/storage.js"></script>
+  <script type="module" src="js/render.js"></script>
+  <script type="module" src="js/main.js"></script>
+
+  <script>
+    // hide splash after app loads (fallback safe)
+    window.addEventListener('load', () => {
+      const splash = document.getElementById('splash');
+      if (splash) {
+        setTimeout(() => {
+          splash.classList.add('hidden');
+        }, 900);
+      }
+    });
+
+    // register service worker (optional)
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(() => console.log('SW registered'))
+        .catch(err => console.log('SW failed', err));
+    }
+  </script>
+</body>
+</html>
